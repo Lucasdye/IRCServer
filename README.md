@@ -1,3 +1,5 @@
+![pngwing com (3)](https://github.com/user-attachments/assets/4d8b9690-dbb9-4d8f-9a51-79a59d18b6e9)
+
 # IRC Server
 This project is an implementation of an IRC (Internet Relay Chat) server in C++. It provides a basic server capable of handling multiple clients through the use of TCP sockets and the poll function. The server listens for incoming connections, processes user input, and manages various IRC commands such as NICK, JOIN, PRIVMSG, and more.
 
