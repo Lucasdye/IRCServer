@@ -1,26 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   capLS.cpp                                          :+:      :+:    :+:   */
+/*   pass.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbouguet <lbouguet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/22 18:11:56 by jquil             #+#    #+#             */
-/*   Updated: 2024/05/02 18:09:48 by lbouguet         ###   ########.fr       */
+/*   Created: 2024/04/22 18:12:26 by jquil             #+#    #+#             */
+/*   Updated: 2024/05/02 18:02:55 by lbouguet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "IRC.hpp"
+#include "../hpp/IRC.hpp"
 
-bool	IRC::capLs(client &client, std::string cmd)
+bool	IRC::pass(client &client, std::string cmd)
 {
-	std::cout << BLUE << "In capls(): " << END_C << std::endl;
-	if (cmd.find("LS") == std::string::npos)
+	if (cmd != this->mdp || client.GetSetup() != 1)
 		return (0);
-	if (client.GetSetup() == 0)
-	{	
-		std::cout << "Setting up" << std::endl;
-		client.SetSetup(1);
-	}
+	client.SetPass(cmd);
+	client.SetSetup(2);
 	return (1);
 }

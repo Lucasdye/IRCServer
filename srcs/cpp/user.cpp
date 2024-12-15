@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "IRC.hpp"
+#include "../hpp/IRC.hpp"
 
 bool	IRC::user(client &client, std::string cmd)
 {

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "IRC.hpp"
+#include "../hpp/IRC.hpp"
 
 
 IRC::client 						IRC::getclientfromsock(int sock){

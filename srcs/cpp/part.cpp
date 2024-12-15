@@ -10,7 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "IRC.hpp"
+#include "../hpp/IRC.hpp"
+
 bool	IRC::part(client &client, std::string cmd)
 {
 	std::cout << BLUE << BOLD << "In part(): " <<  END_C << "cmd: " << cmd << std::endl;

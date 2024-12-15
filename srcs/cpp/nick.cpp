@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 
-#include "IRC.hpp"
+#include "../hpp/IRC.hpp"
 
 int IRC::cmd_used_name(std::string &name, int mode)
 {

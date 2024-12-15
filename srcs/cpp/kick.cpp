@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "IRC.hpp"
+#include "../hpp/IRC.hpp"
 
 bool	IRC::kick(client &client, std::string cmd)
 {

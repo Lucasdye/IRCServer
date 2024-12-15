@@ -10,12 +10,14 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME		:= ircserv
 
+NAME		:= ircserv
+CPP_DIR		:= ./srcs/cpp/
+OBJ_DIR 	:= ./objs/
 CC			:= c++
 FLAGS		:= -Wall -Wextra -Werror -MMD -std=c++98 -g3
 
-SRC			:= 	main.cpp			\
+CPP_FILES		:= 	main.cpp		\
 				IRC.cpp				\
 				client.cpp			\
 				channel.cpp			\
@@ -33,36 +35,34 @@ SRC			:= 	main.cpp			\
 				kick.cpp			\
 				quit.cpp			\
 				invite.cpp			\
-				
 
-OBJ_DIR 	:= ./objs/
-C_OBJ_DIR	:= @mkdir -p $(OBJ_DIR)
-OBJ			:=$(SRC:.cpp=.o)
-OBJ			:=$(addprefix $(OBJ_DIR), $(OBJ))
+CREATE_OBJ_DIR	:= @mkdir -p $(OBJ_DIR)
+OBJ_FILES		:=$(CPP_FILES:.cpp=.o)
+SRC_CPP			:= $(addprefix $(CPP_DIR), $(CPP_FILES))
+OBJ				:=$(addprefix $(OBJ_DIR), $(OBJ_FILES))
+DEPS			:=$(OBJ:.o=.d)
 
-DEPS		:=$(OBJ:.o=.d)
 
 ###########################################################
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
+$(NAME): $(OBJ) 
+	@echo $(OBJ)
+	@echo "Targetting NAME"
 	$(CC) $(FLAGS) $(OBJ) -o $(NAME)
 
-$(OBJ_DIR)%.o: %.cpp $(HEADER)
-	$(C_OBJ_DIR)
-	$(CC) $(FLAGS) -c $< -o $@
-
-debug: FLAGS += -D DEBUG
-debug: re
-
+$(OBJ_DIR)%.o: $(CPP_DIR)%.cpp
+	@echo "Creating obj directory"
+	$(CREATE_OBJ_DIR)
+	@echo "Targetting $(OBJ_DIR).o file"
+	$(CC) -c $< -o $@
+	
 clean:
-	rm -rf $(OBJ_DIR)
+	rm -rf ./objs/
 
 fclean: clean
-	rm -rf $(NAME)
-
-re: fclean all
+	rm $(NAME)
 
 .PHONY : all clean fclean re
 
